@@ -57,6 +57,10 @@ function Login() {
     setShowModal(true);
   };
 
+  const sendOtp = ()=> {
+     notification.error({message: "This service is temporarily suspended"});
+  }
+
   return (
     <>
 
@@ -221,7 +225,7 @@ function Login() {
                             onChange={(e) => setEmail(e.target.value)}
                             style={{ color: "#8A92A6", fontSize: "14px" }}
                           />
-                          <button className="mb-4 bg-blue-500 ml-3 p-2 rounded hover:bg-blue-600 text-white">
+                          <button onClick={sendOtp} className="mb-4 bg-blue-500 ml-3 p-2 rounded hover:bg-blue-600 text-white">
                             Send OTP
                           </button>
                         </div>
