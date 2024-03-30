@@ -22,7 +22,7 @@ import { GrDocumentText } from "react-icons/gr";
 import { HiUsers } from "react-icons/hi2";
 import { IoSettings } from "react-icons/io5";
 import { RiFileUserFill } from "react-icons/ri";
-import { LogoutOutlined,UserOutlined } from "@ant-design/icons";
+import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import Map from "../MapBox";
 import { imageDb } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -34,7 +34,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme, Dropdown } from "antd";
+import { Layout, Menu, Button, theme, Dropdown, notification } from "antd";
 const { Header, Sider, Content } = Layout;
 
 function Dashboard({ onLogout }) {
@@ -45,30 +45,28 @@ function Dashboard({ onLogout }) {
   const [imageUrl, setImageUrl] = useState("");
   const [userName, setUserName] = useState("");
   const name = localStorage.getItem("userName");
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("Logging out...");
     localStorage.removeItem("login");
-    navigate('/')
+    navigate("/");
   };
 
+  const handleEditProject = () => {
+    notification.error({
+      message: "This service is temporarily suspended",
+    });
+  };
 
   const updateScreenSize = () => {
-    setCollapsed(!window.innerWidth < 1024 );
-    console.log(collapsed);
+    setCollapsed(!window.innerWidth < 1024);
   };
 
   useEffect(() => {
-    // Add event listener to handle window resize
-    window.addEventListener('resize', updateScreenSize);
-    // Call the function to set initial screen size state
+    window.addEventListener("resize", updateScreenSize);
     updateScreenSize();
-    // Cleanup function to remove event listener
-    return () => window.removeEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
   }, []);
-  
 
   const menu = (
     <Menu>
@@ -76,8 +74,15 @@ function Dashboard({ onLogout }) {
         <LogoutOutlined className="mr-2" />
         Logout
       </Menu.Item>
-      <Menu.Item key="profile" onClick={handleLogout}>
-        <UserOutlined className="mr-2"/>
+      <Menu.Item
+        key="profile"
+        onClick={() =>
+          notification.error({
+            message: "This service is temporarily suspended",
+          })
+        }
+      >
+        <UserOutlined className="mr-2" />
         My Profile
       </Menu.Item>
     </Menu>
@@ -452,7 +457,7 @@ function Dashboard({ onLogout }) {
             backgroundColor: "#E9ECEF",
             flexWrap: "wrap",
             alignItems: "flex-start",
-            overflow:scroll
+            overflow: scroll,
           }}
         >
           <div className="relative flex justify-between  flex-wrap h-[15vh] mb-5 lg:mb-0">
@@ -559,10 +564,13 @@ function Dashboard({ onLogout }) {
           <div className="grid grid-cols-2">
             <div className="lg:col-span-1 col-span-2 lg:mr-6 mr-0 lg:pb-0 pb-5">
               <div className="project-info mb-6">
-                <div className="bg-white flex-1 lg:h-[16vw] h-[45vh] p-5 rounded-md">
+                <div className="bg-white flex-1 lg:h-[42vh] xl:h-[20vw] h-[45vh] p-5 rounded-md">
                   <div className="flex justify-between">
                     <h1 className="font-bold text-xl">Project Info</h1>
-                    <MdEdit className="w-[3vw] h-[3vh] cursor-pointer" />
+                    <MdEdit
+                      onClick={handleEditProject}
+                      className="md:w-[3vw] w-[5vw] h-[5vh] md:h-[3vh] cursor-pointer"
+                    />
                   </div>
                   <br />
 
@@ -675,7 +683,7 @@ function Dashboard({ onLogout }) {
 
               <div className="grid grid-cols-2">
                 <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
-                  <div className="bg-white h-[45vh] rounded-md p-10">
+                  <div className="bg-white h-[45vh] rounded-md p-8">
                     <div>
                       <h1 className="font-bold text-xl">Users</h1>
                     </div>
@@ -711,7 +719,6 @@ function Dashboard({ onLogout }) {
                     </div>
                     <br />
 
-
                     <div className="felx items-center justify-center">
                       <Button
                         className="w-full"
@@ -728,7 +735,7 @@ function Dashboard({ onLogout }) {
                 </div>
 
                 <div className="work-order mt-6 col-span-2 lg:col-span-1">
-                  <div className="h-[45vh] bg-white rounded-md p-10">
+                  <div className="h-[45vh] bg-white rounded-md p-8">
                     <div>
                       <h1 className="font-bold text-xl">Work Order</h1>
                     </div>
