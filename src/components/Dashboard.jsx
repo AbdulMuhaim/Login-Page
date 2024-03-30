@@ -47,7 +47,6 @@ function Dashboard({ onLogout }) {
   const name = localStorage.getItem("userName");
   const navigate = useNavigate()
 
-  console.log("Dashboooooard")
 
   const handleLogout = () => {
     console.log("Logging out...");
@@ -56,6 +55,19 @@ function Dashboard({ onLogout }) {
   };
 
 
+  const updateScreenSize = () => {
+    setCollapsed(!window.innerWidth < 1024 );
+    console.log(collapsed);
+  };
+
+  useEffect(() => {
+    // Add event listener to handle window resize
+    window.addEventListener('resize', updateScreenSize);
+    // Call the function to set initial screen size state
+    updateScreenSize();
+    // Cleanup function to remove event listener
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
   
 
   const menu = (
@@ -372,11 +384,7 @@ function Dashboard({ onLogout }) {
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
-                style={{
-                  fontSize: "16px",
-                  width: 64,
-                  height: 64,
-                }}
+                className="md:pr-0 ml-3 mr-3 hidden sm:block"
               />
               <LuSearch className="absolute hidden lg:block w-[3vw] h-[3vh] left-16 top-7 text-gray-400" />
               <input
@@ -444,6 +452,7 @@ function Dashboard({ onLogout }) {
             backgroundColor: "#E9ECEF",
             flexWrap: "wrap",
             alignItems: "flex-start",
+            overflow:scroll
           }}
         >
           <div className="relative flex justify-between  flex-wrap h-[15vh] mb-5 lg:mb-0">
