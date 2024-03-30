@@ -719,7 +719,7 @@ function Dashboard({ onLogout }) {
                         </h1>
                       </div>
                     </div>
-                    <br /><br /><br />
+                    <br />
 
                     <div className="felx items-center justify-center">
                       <Button
@@ -765,7 +765,7 @@ function Dashboard({ onLogout }) {
                         <p className="mr-20">1</p>
                       </div>
                     </div>
-                    <br /><br />
+                    <br />
 
                     <div className="felx items-center justify-center mt-2">
                       <Button
