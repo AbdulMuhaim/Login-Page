@@ -437,11 +437,11 @@ function Dashboard({ onLogout }) {
           </div>
         </Header>
         <Content
-          className="lg:p-6 md:p-4 p-2 xl:bg-orange-200 lg:bg-lime-200 md:bg-teal-200 sm:bg-fuchsia-200"
+          className="lg:p-6 md:p-4 p-2 w-fit"
           style={{
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            // backgroundColor: "#E9ECEF",
+            backgroundColor: "#E9ECEF",
             flexWrap: "wrap",
             alignItems: "flex-start",
           }}
@@ -451,12 +451,11 @@ function Dashboard({ onLogout }) {
             <input
               type="text"
               placeholder="Search Project"
-              className="border border-gray-300 rounded-md text-base py-2 pl-10 pr-4 focus:outline-none mb-5 shadow"
               style={{
                 height: "36px",
-                width: "662px",
                 color: "#ADB5BD",
               }}
+              className="border border-gray-300 rounded-md text-base py-2 pl-10 focus:outline-none mb-5 shadow md:w-[50vw] w-[74vw]"
             />
             <div className="flex gap-1">
               <Button
@@ -665,7 +664,6 @@ function Dashboard({ onLogout }) {
                 </div>
               </div>
 
-              {/* <div className="flex justify-between"> */}
               <div className="grid grid-cols-2">
                 <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
                   <div className="bg-white h-[45vh] rounded-md p-10">
@@ -703,6 +701,7 @@ function Dashboard({ onLogout }) {
                       </div>
                     </div>
                     <br />
+
 
                     <div className="felx items-center justify-center">
                       <Button
