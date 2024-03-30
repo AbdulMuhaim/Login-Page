@@ -36,7 +36,7 @@ const MapComponent = () => {
 
 const YourComponent = () => {
   return (
-    <div className="flex justify-center items-center p-6">
+    <div className="flex justify-center items-center p-2 lg:p-6">
       <MapComponent locations={locations} />
     </div>
   );

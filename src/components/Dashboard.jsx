@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../public/Screenshot 2024-03-25 144353.png";
-import img from "../../public/Screenshot_2024-03-25_144339-removebg-preview (1).png";
+import dashboardBg from "../../public/Screenshot_2024-03-25_144339-removebg-preview (1).png";
 import ukLogo from "../../public/daab37fd372ddb4949adebcd73166a20.png";
 import contentImg from "../../public/Screenshot 2024-03-28 233417.png";
 import userDp from "../../public/images.jpg";
@@ -22,23 +22,22 @@ import { GrDocumentText } from "react-icons/gr";
 import { HiUsers } from "react-icons/hi2";
 import { IoSettings } from "react-icons/io5";
 import { RiFileUserFill } from "react-icons/ri";
-
-
-
+import { LogoutOutlined,UserOutlined } from "@ant-design/icons";
 import Map from "../MapBox";
 import { imageDb } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 import {
   RightOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
+import { Layout, Menu, Button, theme, Dropdown } from "antd";
 const { Header, Sider, Content } = Layout;
 
-function Dashboard() {
+function Dashboard({ onLogout }) {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedKey, setSelectedKey] = useState("0");
   const [showModal, setShowModal] = useState(false);
@@ -46,6 +45,31 @@ function Dashboard() {
   const [imageUrl, setImageUrl] = useState("");
   const [userName, setUserName] = useState("");
   const name = localStorage.getItem("userName");
+  const navigate = useNavigate()
+
+  console.log("Dashboooooard")
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    localStorage.removeItem("login");
+    navigate('/')
+  };
+
+
+  
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="logout" onClick={handleLogout}>
+        <LogoutOutlined className="mr-2" />
+        Logout
+      </Menu.Item>
+      <Menu.Item key="profile" onClick={handleLogout}>
+        <UserOutlined className="mr-2"/>
+        My Profile
+      </Menu.Item>
+    </Menu>
+  );
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -97,8 +121,11 @@ function Dashboard() {
         className="bg-white-important"
       >
         <div className="demo-logo-vertical" />
-        <div className="flex items-center pl-7 border-b-2 border-gray-200">
-          <img className="w-[6vw] h-[9vh]" src={logo} alt="" />
+        <div
+          style={{ height: 75 }}
+          className="flex items-center pl-7 border-b-2 border-gray-200"
+        >
+          <img style={{ width: 150, height: 60 }} src={logo} alt="" />
         </div>
         <br />
         <div style={{ height: "35px" }} className="flex items-center">
@@ -129,7 +156,7 @@ function Dashboard() {
                   }}
                 />
               ),
-              label: <span style={{ fontSize: '16px' }}>Dashboard</span>,
+              label: <span style={{ fontSize: "16px" }}>Dashboard</span>,
             },
           ]}
         />
@@ -144,7 +171,11 @@ function Dashboard() {
 
         <div className="dashboard-bg">
           <div className="absolute-img">
-            <img className="opacity-30 w-[9vw] h-[30vh]" src={img} alt="" />
+            <img
+              className="opacity-30 w-[9vw] h-[30vh]"
+              src={dashboardBg}
+              alt=""
+            />
           </div>
         </div>
 
@@ -243,7 +274,7 @@ function Dashboard() {
                   }}
                 />
               ),
-              label: <span style={{ fontSize: "16px" }}>Energy Monitor</span>,
+              label: <span style={{ fontSize: "16px " }}>Energy Monitr</span>,
               itemIcon: <RightOutlined />,
             },
             {
@@ -329,14 +360,14 @@ function Dashboard() {
           style={{
             padding: 0,
             background: colorBgContainer,
-            height: "80px",
+            height: 75,
           }}
         >
           <div
-            className="relative flex justify-between h-[25vh]"
+            className="relative flex items-center justify-between h-[25vh]"
             style={{ height: "75px" }}
           >
-            <div>
+            <div className="lg:flex lg:items-center lg:justify-center">
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -347,18 +378,17 @@ function Dashboard() {
                   height: 64,
                 }}
               />
-
-              <LuSearch className="absolute w-[3vw] h-[3vh] left-16 top-5 text-gray-400" />
+              <LuSearch className="absolute hidden lg:block w-[3vw] h-[3vh] left-16 top-7 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search..."
-                className="border border-gray-300 rounded-md text-base py-2 pl-10 pr-4 focus:outline-none mb-5 shadow-md"
+                className="border border-gray-300 hidden lg:block rounded-md text-base pl-10 pr-4 mt-5 focus:outline-none mb-5 shadow-md"
                 style={{
                   borderColor: "#EA4335",
                   height: "36px",
                   width: "310px",
                   color: "#ADB5BD",
-                  marginLeft:'5px'
+                  marginLeft: "5px",
                 }}
               />
             </div>
@@ -385,14 +415,20 @@ function Dashboard() {
                   cursor: "pointer",
                 }}
               />
-              <img
-                src={imageUrl || userDp}
-                className="rounded-full cursor-pointer"
-                style={{ width: "45px", height: "45px" }}
-                alt=""
-              />
-              <div className="flex-row items-center justify-center">
-                <h1 className="cursor-pointer text-black h-4">{name?name:"John Doe"}</h1>
+
+              <Dropdown overlay={menu} placement="bottomLeft">
+                <img
+                  src={imageUrl || userDp}
+                  className="rounded-full cursor-pointer"
+                  style={{ width: "45px", height: "45px" }}
+                  alt=""
+                />
+              </Dropdown>
+
+              <div className="flex-row items-center justify-center hidden md:block">
+                <h1 className="cursor-pointer text-black h-4">
+                  {name ? name : "John Doe"}
+                </h1>
                 <span className="h-4 text-xs text-gray-700">
                   Facility Manager
                 </span>
@@ -401,21 +437,17 @@ function Dashboard() {
           </div>
         </Header>
         <Content
+          className="lg:p-6 md:p-4 p-2 xl:bg-orange-200 lg:bg-lime-200 md:bg-teal-200 sm:bg-fuchsia-200"
           style={{
-            padding: 24,
-            minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            backgroundColor: "#E9ECEF",
+            // backgroundColor: "#E9ECEF",
             flexWrap: "wrap",
             alignItems: "flex-start",
           }}
         >
-          <div
-            className="relative flex justify-between"
-            style={{ height: "75px" }}
-          >
-            <MdOutlineSearch className="absolute w-[3vw] h-[3vh] top-2 text-gray-400" />
+          <div className="relative flex justify-between  flex-wrap h-[15vh] mb-5 lg:mb-0">
+            <MdOutlineSearch className="absolute md:w-[3vw] md:h-[3vh] w-5 h-5 top-2 lg:left-0 sm:left-4 left-2 text-gray-400" />
             <input
               type="text"
               placeholder="Search Project"
@@ -426,14 +458,13 @@ function Dashboard() {
                 color: "#ADB5BD",
               }}
             />
-            <div className="mr-8">
+            <div className="flex gap-1">
               <Button
                 style={{
                   backgroundColor: "grey",
                   color: "white",
-                  height: "38px",
-                  width: "170px",
                 }}
+                className="h-9 md:w-40 w-32"
                 onClick={handleEditProfile}
               >
                 Edit Profile
@@ -452,7 +483,9 @@ function Dashboard() {
                           &times;
                         </span>
                       </div>
-                      <h2 className="text-black text-xl">Edit Profile</h2>
+                      <h2 className="text-black text-base md:text-xl">
+                        Edit Profile
+                      </h2>
                       <br />
                       <div>
                         <label
@@ -462,7 +495,7 @@ function Dashboard() {
                           Username:
                         </label>
                         <input
-                          className="py-2 pl-3 w-[45vw] md:w-[15vw] mb-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                          className="py-2 pl-3 md:w-[25vw] w-[40vw]  mb-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
                           type="text"
                           id="username"
                           name="username"
@@ -480,7 +513,7 @@ function Dashboard() {
                           Profile Picture:
                         </label>
                         <input
-                          className="py-2 pl-3 w-[45vw] md:w-[15vw] mb-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                          className="py-2 pl-3 md:w-[25vw] w-[40vw]  mb-4 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
                           type="file"
                           id="profilePicture"
                           name="profilePicture"
@@ -507,10 +540,8 @@ function Dashboard() {
                 style={{
                   backgroundColor: "#FF4438",
                   color: "white",
-                  marginLeft: "15px",
-                  height: "38px",
-                  width: "170px",
                 }}
+                className="sm:ml-7 ml-0 h-9 md:w-40 w-32"
               >
                 Add New Project
               </Button>
@@ -518,9 +549,9 @@ function Dashboard() {
           </div>
 
           <div className="grid grid-cols-2">
-            <div className="col-span-1 mr-6">
+            <div className="lg:col-span-1 col-span-2 lg:mr-6 mr-0 lg:pb-0 pb-5">
               <div className="project-info mb-6">
-                <div className="bg-white flex-1 h-[16vw] p-5 rounded-md">
+                <div className="bg-white flex-1 lg:h-[16vw] h-[45vh] p-5 rounded-md">
                   <div className="flex justify-between">
                     <h1 className="font-bold text-xl">Project Info</h1>
                     <MdEdit className="w-[3vw] h-[3vh] cursor-pointer" />
@@ -597,7 +628,7 @@ function Dashboard() {
 
                   <div className="flex justify-between">
                     <h1
-                      className="flex-1 text-xs font-semibold"
+                      className="flex-1 text-xs font-semibold lg:pr-0 pr-2"
                       style={{ color: "#FF4438" }}
                     >
                       Kakkanad, Kochi, India
@@ -615,22 +646,29 @@ function Dashboard() {
                 </div>
               </div>
 
-              <div className=" bg-white rounded-md">
-                <h1 className="font-bold text-xl p-5">Location</h1>
+              <div className=" bg-white rounded-md p-1">
+                <h1 className="font-bold text-xl lg:p-5 md:p-2 p-0">
+                  Location
+                </h1>
                 <Map />
               </div>
             </div>
 
-            <div className="col-span-1">
+            <div className="lg:col-span-1 col-span-2">
               <div className="building-image">
-                <div className="p-5 bg-white">
-                  <img className="w-[40vw] h-[50vh]" src={contentImg} alt="" />
+                <div className="lg:p-5 p-2 bg-white">
+                  <img
+                    className="lg:w-[40vw] lg:h-[50vh]"
+                    src={contentImg}
+                    alt=""
+                  />
                 </div>
               </div>
 
-              <div className="flex justify-between">
-                <div className="users mr-6 mt-6 flex-1">
-                  <div className="flex-1 bg-white h-[45vh] rounded-md p-10">
+              {/* <div className="flex justify-between"> */}
+              <div className="grid grid-cols-2">
+                <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
+                  <div className="bg-white h-[45vh] rounded-md p-10">
                     <div>
                       <h1 className="font-bold text-xl">Users</h1>
                     </div>
@@ -638,7 +676,7 @@ function Dashboard() {
 
                     <div className="flex">
                       <img
-                        className="rounded-full w-[4vw] h-[8vh]"
+                        className="rounded-full w-10 h-10"
                         src={userImg1}
                         alt=""
                       />
@@ -653,7 +691,7 @@ function Dashboard() {
 
                     <div className="flex">
                       <img
-                        className="rounded-full w-[4vw] h-[8vh]"
+                        className="rounded-full w-10 h-10"
                         src={userImg1}
                         alt=""
                       />
@@ -681,7 +719,7 @@ function Dashboard() {
                   </div>
                 </div>
 
-                <div className="work-order mt-6 flex-1">
+                <div className="work-order mt-6 col-span-2 lg:col-span-1">
                   <div className="h-[45vh] bg-white rounded-md p-10">
                     <div>
                       <h1 className="font-bold text-xl">Work Order</h1>
