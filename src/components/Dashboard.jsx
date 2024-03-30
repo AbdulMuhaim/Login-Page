@@ -684,7 +684,7 @@ function Dashboard({ onLogout }) {
 
               <div className="grid grid-cols-2">
                 <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
-                  <div className="bg-white h-[56vh] rounded-md p-8">
+                  <div className="bg-white xl:h-[56vh] lg:h-[48vh] md:h-[40vh] sm:h-[32vh] rounded-md p-8">
                     <div>
                       <h1 className="font-bold text-xl">Users</h1>
                     </div>
@@ -737,7 +737,7 @@ function Dashboard({ onLogout }) {
                 </div>
 
                 <div className="work-order mt-6 col-span-2 lg:col-span-1">
-                  <div className="h-[56vh] bg-white rounded-md p-8">
+                  <div className="xl:h-[56vh] lg:h-[48vh] md:h-[40vh] sm:h-[32vh] bg-white rounded-md p-8">
                     <div>
                       <h1 className="font-bold text-xl">Work Order</h1>
                     </div>
