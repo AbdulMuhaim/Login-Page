@@ -23,7 +23,7 @@ import { HiUsers } from "react-icons/hi2";
 import { IoSettings } from "react-icons/io5";
 import { RiFileUserFill } from "react-icons/ri";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
-import Map from "../MapBox";
+import Map from "./MapBox";
 import { imageDb } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";

@@ -3,10 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 
 const locations = [
-//   { latitude: 12.9716, longitude: 77.5946, name: 'Bangalore' },
   { latitude: 10.0159, longitude: 76.3419, name: 'Kochi' },
-//   { latitude: 11.2588, longitude: 75.7804, name: 'Calicut' },
-//   { latitude: 13.0827, longitude: 80.2707, name: 'Chennai' },
 ];
 
 const MapComponent = () => {
