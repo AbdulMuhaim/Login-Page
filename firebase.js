@@ -1,14 +1,16 @@
 import { initializeApp } from "firebase/app";
 import {getStorage} from "firebase/storage"
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC25is-5fXSkYapKR272SvL-nXK3K_yPCE",
-  authDomain: "smagesystems-e92ce.firebaseapp.com",
-  projectId: "smagesystems-e92ce",
-  storageBucket: "smagesystems-e92ce.appspot.com",
-  messagingSenderId: "786671776978",
-  appId: "1:786671776978:web:03fff3a0dc0bff51f1690b"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+
 
 const app = initializeApp(firebaseConfig);
 export const imageDb = getStorage(app)

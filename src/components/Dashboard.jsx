@@ -568,8 +568,9 @@ function Dashboard({ onLogout }) {
                   <div className="flex justify-between">
                     <h1 className="font-bold text-xl">Project Info</h1>
                     <MdEdit
+                    style={{height:'25px', width:'25px'}}
                       onClick={handleEditProject}
-                      className="md:w-[3vw] w-[5vw] h-[5vh] md:h-[3vh] cursor-pointer"
+                      className=" cursor-pointer"
                     />
                   </div>
                   <br />
@@ -683,10 +684,11 @@ function Dashboard({ onLogout }) {
 
               <div className="grid grid-cols-2">
                 <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
-                  <div className="bg-white h-[45vh] rounded-md p-8">
+                  <div className="bg-white h-[56vh] rounded-md p-8">
                     <div>
                       <h1 className="font-bold text-xl">Users</h1>
                     </div>
+                    <br />
                     <br />
 
                     <div className="flex">
@@ -702,7 +704,7 @@ function Dashboard({ onLogout }) {
                         </h1>
                       </div>
                     </div>
-                    <br />
+                    <br /><br />
 
                     <div className="flex">
                       <img
@@ -717,7 +719,7 @@ function Dashboard({ onLogout }) {
                         </h1>
                       </div>
                     </div>
-                    <br />
+                    <br /><br /><br />
 
                     <div className="felx items-center justify-center">
                       <Button
@@ -735,13 +737,14 @@ function Dashboard({ onLogout }) {
                 </div>
 
                 <div className="work-order mt-6 col-span-2 lg:col-span-1">
-                  <div className="h-[45vh] bg-white rounded-md p-8">
+                  <div className="h-[56vh] bg-white rounded-md p-8">
                     <div>
                       <h1 className="font-bold text-xl">Work Order</h1>
                     </div>
                     <br />
+                    <br />
                     <div>
-                      <div className="bg-red-200 flex items-center h-[4vh] p-2 justify-between rounded text-base font-medium opacity-75">
+                      <div className="bg-red-200 flex items-center h-[5vh] p-2 justify-between rounded text-base font-medium opacity-75">
                         <p>Open</p>
                         <p className="mr-20">2</p>
                       </div>
@@ -749,7 +752,7 @@ function Dashboard({ onLogout }) {
                     <br />
 
                     <div>
-                      <div className="bg-red-200 flex items-center h-[4vh] p-2 justify-between rounded text-base font-medium opacity-75">
+                      <div className="bg-red-200 flex items-center h-[5vh] p-2 justify-between rounded text-base font-medium opacity-75">
                         <p>Overdue</p>
                         <p className="mr-20">2</p>
                       </div>
@@ -757,12 +760,12 @@ function Dashboard({ onLogout }) {
                     <br />
 
                     <div>
-                      <div className="bg-red-200 flex items-center h-[4vh] p-2 justify-between rounded text-base font-medium opacity-75">
+                      <div className="bg-red-200 flex items-center h-[5vh] p-2 justify-between rounded text-base font-medium opacity-75">
                         <p>Inprogress</p>
                         <p className="mr-20">1</p>
                       </div>
                     </div>
-                    <br />
+                    <br /><br />
 
                     <div className="felx items-center justify-center mt-2">
                       <Button
