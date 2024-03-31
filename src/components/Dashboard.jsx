@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "../../public/Screenshot 2024-03-25 144353.png";
 import dashboardBg from "../../public/Screenshot_2024-03-25_144339-removebg-preview (1).png";
 import ukLogo from "../../public/daab37fd372ddb4949adebcd73166a20.png";
-import contentImg from "../../public/Screenshot 2024-03-28 233417.png";
+import buildingImg from "../../public/Screenshot 2024-03-28 233417.png";
 import userDp from "../../public/images.jpg";
 import userImg1 from "../../public/MV5BMjA3ODA0MDI4OF5BMl5BanBnXkFtZTgwMjEyNzI3MDE@._V1_.jpg";
 import { BsBellFill } from "react-icons/bs";
@@ -567,7 +567,7 @@ function Dashboard({ onLogout }) {
           <div className="grid grid-cols-2">
             <div className="lg:col-span-1 col-span-2 lg:mr-6 mr-0 lg:pb-0 pb-5">
               <div className="project-info mb-6">
-                <div className="bg-white flex-1 lg:h-[42vh] xl:h-[20vw] h-[45vh] p-5 rounded-md">
+                <div className="bg-white flex-1 p-5 rounded-md">
                   <div className="flex justify-between">
                     <h1 className="font-bold text-xl">Project Info</h1>
                     <MdEdit
@@ -678,8 +678,7 @@ function Dashboard({ onLogout }) {
               <div className="building-image">
                 <div className="lg:p-5 p-2 bg-white">
                   <img
-                    className="lg:w-[40vw] lg:h-[50vh]"
-                    src={contentImg}
+                    src={buildingImg}
                     alt=""
                   />
                 </div>
@@ -687,7 +686,7 @@ function Dashboard({ onLogout }) {
 
               <div className="grid grid-cols-2">
                 <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
-                  <div className="bg-white lg:h-[54vh] md:h-[52vh] sm:h-[48vh] rounded-md p-5">
+                  <div className="bg-white rounded-md p-6">
                     <div>
                       <h1 className="font-bold text-xl">Users</h1>
                     </div>
@@ -756,7 +755,7 @@ function Dashboard({ onLogout }) {
                 </div>
 
                 <div className="work-order mt-6 col-span-2 lg:col-span-1 ">
-                  <div className="lg:h-[54vh] md:h-[52vh] sm:h-[48vh] bg-white rounded-md p-5">
+                  <div className="bg-white rounded-md md:p-8 p-6">
                     <div>
                       <h1 className="font-bold text-xl">Work Order</h1>
                     </div>
