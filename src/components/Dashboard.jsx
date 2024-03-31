@@ -52,7 +52,7 @@ function Dashboard({ onLogout }) {
     navigate("/");
   };
 
-  const handleEditProject = () => {
+  const handleUnfinishedTask = () => {
     notification.error({
       message: "This service is temporarily suspended",
     });
@@ -419,6 +419,7 @@ function Dashboard({ onLogout }) {
                   height: "25px",
                   cursor: "pointer",
                 }}
+                onClick={handleUnfinishedTask}
               />
               <IoMail
                 style={{
@@ -427,6 +428,7 @@ function Dashboard({ onLogout }) {
                   height: "25px",
                   cursor: "pointer",
                 }}
+                onClick={handleUnfinishedTask}
               />
 
               <Dropdown overlay={menu} placement="bottomLeft">
@@ -555,6 +557,7 @@ function Dashboard({ onLogout }) {
                   color: "white",
                 }}
                 className="sm:ml-7 ml-0 h-9 md:w-40 w-32"
+                onClick={handleUnfinishedTask}
               >
                 Add New Project
               </Button>
@@ -569,7 +572,7 @@ function Dashboard({ onLogout }) {
                     <h1 className="font-bold text-xl">Project Info</h1>
                     <MdEdit
                     style={{height:'25px', width:'25px'}}
-                      onClick={handleEditProject}
+                      onClick={handleUnfinishedTask}
                       className=" cursor-pointer"
                     />
                   </div>
@@ -684,11 +687,10 @@ function Dashboard({ onLogout }) {
 
               <div className="grid grid-cols-2">
                 <div className="users lg:mr-6 mt-6 col-span-2 lg:col-span-1">
-                  <div className="bg-white xl:h-[56vh] lg:h-[48vh] md:h-[40vh] sm:h-[32vh] rounded-md p-8">
+                  <div className="bg-white lg:h-[54vh] md:h-[52vh] sm:h-[48vh] rounded-md p-5">
                     <div>
                       <h1 className="font-bold text-xl">Users</h1>
                     </div>
-                    <br />
                     <br />
 
                     <div className="flex">
@@ -704,7 +706,23 @@ function Dashboard({ onLogout }) {
                         </h1>
                       </div>
                     </div>
-                    <br /><br />
+                    <br />
+
+
+                    <div className="flex">
+                      <img
+                        className="rounded-full w-10 h-10"
+                        src={userImg1}
+                        alt=""
+                      />
+                      <div className="flex-col ml-5">
+                        <h1 className="font-semibold text-base">Anna Mull</h1>
+                        <h1 className="text-xs font-semibold opacity-60">
+                          Administrator
+                        </h1>
+                      </div>
+                    </div>
+                    <br />
 
                     <div className="flex">
                       <img
@@ -729,6 +747,7 @@ function Dashboard({ onLogout }) {
                           color: "white",
                           height: "38px",
                         }}
+                        onClick={handleUnfinishedTask}
                       >
                         See All
                       </Button>{" "}
@@ -736,12 +755,11 @@ function Dashboard({ onLogout }) {
                   </div>
                 </div>
 
-                <div className="work-order mt-6 col-span-2 lg:col-span-1">
-                  <div className="xl:h-[56vh] lg:h-[48vh] md:h-[40vh] sm:h-[32vh] bg-white rounded-md p-8">
+                <div className="work-order mt-6 col-span-2 lg:col-span-1 ">
+                  <div className="lg:h-[54vh] md:h-[52vh] sm:h-[48vh] bg-white rounded-md p-5">
                     <div>
                       <h1 className="font-bold text-xl">Work Order</h1>
                     </div>
-                    <br />
                     <br />
                     <div>
                       <div className="bg-red-200 flex items-center h-[5vh] p-2 justify-between rounded text-base font-medium opacity-75">
@@ -775,6 +793,7 @@ function Dashboard({ onLogout }) {
                           color: "white",
                           height: "38px",
                         }}
+                        onClick={handleUnfinishedTask}
                       >
                         See All
                       </Button>{" "}

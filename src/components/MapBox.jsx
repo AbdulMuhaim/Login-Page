@@ -26,7 +26,7 @@ const MapComponent = () => {
 
   return (
     <div className="relative w-full">
-      <div id="map-container" className="h-[50vh]"></div>
+      <div id="map-container" className="h-[48vh]"></div>
     </div>
   );
 };
